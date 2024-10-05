@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MyShixcode.iml" filepath="$PROJECT_DIR$/.idea/MyShixcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RestaurantManagement/RestaurantManagement.iml" filepath="$PROJECT_DIR$/RestaurantManagement/RestaurantManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TankWar/TankWar.iml" filepath="$PROJECT_DIR$/TankWar/TankWar.iml" />
+    </modules>
+  </component>
+</project>
