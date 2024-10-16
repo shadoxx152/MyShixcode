@@ -1,8 +1,10 @@
 ### IntelliJ IDEA ###
 src/com/shadoxx/demo/
 out/
+.idea/
 !**/src/main/**/out/
 !**/src/test/**/out/
+src/c3p0-config.xml
 
 ### Eclipse ###
 .apt_generated
