@@ -12,9 +12,9 @@ import java.util.List;
 
 public class BasicDAO<T>{
     private final QueryRunner queryRunner = new QueryRunner();
+    private Connection connection = null;
 
     public int update(String sql, Object... parameters) {
-        Connection connection = null;
 
         try {
             connection = JDBCUtilsByDruid.getConnection();
@@ -27,8 +27,6 @@ public class BasicDAO<T>{
     }
 
     public List<T> query(String sql, Class<T> clazz, Object... parameters) {
-        Connection connection = null;
-
         try {
             connection = JDBCUtilsByDruid.getConnection();
             return queryRunner.query(connection, sql, new BeanListHandler<T>(clazz), parameters);
@@ -40,8 +38,6 @@ public class BasicDAO<T>{
     }
 
     public T querySingle(String sql, Class<T> clazz, Object... parameters) {
-        Connection connection = null;
-
         try {
             connection = JDBCUtilsByDruid.getConnection();
             return queryRunner.query(connection, sql, new BeanHandler<T>(clazz), parameters);
@@ -53,8 +49,6 @@ public class BasicDAO<T>{
     }
 
     public Object queryScalar(String sql, Object... parameters) {
-        Connection connection = null;
-
         try {
             connection = JDBCUtilsByDruid.getConnection();
             return queryRunner.query(connection, sql, new ScalarHandler<>(), parameters);

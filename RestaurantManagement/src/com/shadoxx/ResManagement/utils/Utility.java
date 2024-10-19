@@ -1,66 +1,74 @@
 package com.shadoxx.ResManagement.utils;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Utility {
     private static final Scanner scanner = new Scanner(System.in);
     /**
-     * 功能：读取键盘输入的一个菜单选项，值：1——5的范围
-     * @return 1——5
+     *A menu option to read keyboard input, with values ranging from 1 to 5
+     * @return 1 To 5
      */
     public static char readMenuSelection() {
         char c;
         for (; ; ) {
-            String str = readKeyBoard(1, false);//包含一个字符的字符串
-            c = str.charAt(0);//将字符串转换成字符char类型
+            //A string containing one character
+            String str = readKeyBoard(1, false);
+            //Convert a string to a character char type
+            c = str.charAt(0);
             if (c != '1' && c != '2' &&
                     c != '3' && c != '4' && c != '5') {
-                System.out.print("选择错误，请重新输入：");
-            } else break;
+                System.out.print("Select Error, please re-enter:");
+            } else {
+                break;
+            }
         }
         return c;
     }
 
     /**
-     * 功能：读取键盘输入的一个字符
-     * @return 一个字符
+     * Read a character entered on the keyboard
+     * @return One character
      */
     public static char readChar() {
-        String str = readKeyBoard(1, false);//就是一个字符
+        //It's just a character
+        String str = readKeyBoard(1, false);
         return str.charAt(0);
     }
     /**
-     * 功能：读取键盘输入的一个字符，如果直接按回车，则返回指定的默认值；否则返回输入的那个字符
-     * @param defaultValue 指定的默认值
-     * @return 默认值或输入的字符
+     * Reads a character entered by the keyboard, and if you press enter directly, returns the specified default value; Otherwise, the character entered is returned
+     * @param defaultValue The default value specified
+     * @return Default value or entered character
      */
 
     public static char readChar(char defaultValue) {
-        String str = readKeyBoard(1, true);//要么是空字符串，要么是一个字符
+        //Either it's an empty string or a character
+        String str = readKeyBoard(1, true);
         return (str.isEmpty()) ? defaultValue : str.charAt(0);
     }
 
     /**
-     * 功能：读取键盘输入的整型，长度小于2位
-     * @return 整数
+     * Reads the integer input on the keyboard, which is less than 2 digits in length
+     * @return a Integer
      */
     public static int readInt() {
         int n;
         for (; ; ) {
-            String str = readKeyBoard(10, false);//一个整数，长度<=10位
+            //An integer with length less than or equal to 10 digits
+            String str = readKeyBoard(10, false);
             try {
-                n = Integer.parseInt(str);//将字符串转换成整数
+                //Convert strings to integers
+                n = Integer.parseInt(str);
                 break;
             } catch (NumberFormatException e) {
-                System.out.print("数字输入错误，请重新输入：");
+                System.out.print("The number is entered incorrectly, please re-enter:");
             }
         }
         return n;
     }
     /**
-     * 功能：读取键盘输入的 整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数
-     * @param defaultValue 指定的默认值
-     * @return 整数或默认值
+     * Reads the integer or default value entered by the keyboard, returns the default value if you press enter directly, and returns the whole value entered otherwise
+     * @param defaultValue The default value specified
+     * @return Integer or default
      */
     public static int readInt(int defaultValue) {
         int n;
@@ -70,21 +78,20 @@ public class Utility {
                 return defaultValue;
             }
 
-            //异常处理...
             try {
                 n = Integer.parseInt(str);
                 break;
             } catch (NumberFormatException e) {
-                System.out.print("数字输入错误，请重新输入：");
+                System.out.print("The number is entered incorrectly, please re-enter:");
             }
         }
         return n;
     }
 
     /**
-     * 功能：读取键盘输入的指定长度的字符串
-     * @param limit 限制的长度
-     * @return 指定长度的字符串
+     * Reads a string of specified lengths entered by the keyboard
+     * @param limit The length of the limit
+     * @return A string of specified length
      */
 
     public static String readString(int limit) {
@@ -92,10 +99,10 @@ public class Utility {
     }
 
     /**
-     * 功能：读取键盘输入的指定长度的字符串或默认值，如果直接回车，返回默认值，否则返回字符串
-     * @param limit 限制的长度
-     * @param defaultValue 指定的默认值
-     * @return 指定长度的字符串
+     * Reads a string or default value of a specified length entered by the keyboard, and returns the default value if you press enter directly, otherwise returns a string
+     * @param limit the length of the limit
+     * @param defaultValue The default value specified
+     * @return A string of specified length
      */
 
     public static String readString(int limit, String defaultValue) {
@@ -105,59 +112,58 @@ public class Utility {
 
 
     /**
-     * 功能：读取键盘输入的确认选项，Y或N
-     * 将小的功能，封装到一个方法中.
-     * @return Y或N
+     * Read the confirmation option for keyboard input, Y or N
+     * @return Y or N
      */
     public static char readConfirmSelection() {
-        System.out.println("请输入你的选择(Y/N): 请小心选择");
         char c;
-        for (; ; ) {//无限循环
-            //在这里，将接受到字符，转成了大写字母
-            //y => Y n=>N
+        for (; ; ) {
+            //The accepted characters are converted into capital letters
             String str = readKeyBoard(1, false).toUpperCase();
             c = str.charAt(0);
             if (c == 'Y' || c == 'N') {
                 break;
             } else {
-                System.out.print("选择错误，请重新输入：");
+                System.out.print("If you selected the wrong one, please re-enter:");
             }
         }
         return c;
     }
 
+    public static void waitToInputEnter() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
+    }
+
     /**
-     * 功能： 读取一个字符串
-     * @param limit 读取的长度
-     * @param blankReturn 如果为true ,表示 可以读空字符串。
-     * 					  如果为false表示 不能读空字符串。
+     * Read a string
+     * @param limit The length of the read
+     * @param blankReturn If true, it means that the string can be read empty.
+     * 					  If it is false, it means that the string cannot be read empty.
      *
-     *	如果输入为空，或者输入大于limit的长度，就会提示重新输入。
+     *	If the input is empty, or if the input is longer than the limit, it will prompt you to re-enter.
      */
     private static String readKeyBoard(int limit, boolean blankReturn) {
-
-        //定义了字符串
         String line = "";
 
-        //scanner.hasNextLine() 判断有没有下一行
         while (scanner.hasNextLine()) {
-            line = scanner.nextLine();//读取这一行
-
-            //如果line.length=0, 即用户没有输入任何内容，直接回车
+            line = scanner.nextLine();
             if (line.isEmpty()) {
-                if (blankReturn) return line;//如果blankReturn=true,可以返回空串
-                else continue; //如果blankReturn=false,不接受空串，必须输入内容
+                if (blankReturn) return line;
+                else continue;
             }
 
-            //如果用户输入的内容大于了 limit，就提示重写输入
-            //如果用户如的内容 >0 <= limit ,我就接受
             if (line.length() > limit) {
-                System.out.print("输入长度（不能大于" + limit + "）错误，请重新输入：");
+                System.out.print("Input length (cannot be greater than " + limit + ") error, please re-enter:");
                 continue;
             }
             break;
         }
-
         return line;
+    }
+
+    public static void close() {
+        scanner.close();
     }
 }
